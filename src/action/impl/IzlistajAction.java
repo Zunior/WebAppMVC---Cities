@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import action.AbstractAction;
+import constants.ViewConstants;
 import domain.City;
 
 public class IzlistajAction extends AbstractAction{
@@ -16,7 +17,7 @@ public class IzlistajAction extends AbstractAction{
 		if(cities == null)
 			cities = new ArrayList<City>();
 		
-		return "/WEB-INF/pages/ListaGradova.jsp";
+		return ViewConstants.LIST_CITY;
 	}
 	
 }

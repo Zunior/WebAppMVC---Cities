@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import controller.ApplicationController;
+import view.ViewResolver;
 
 /**
  * Servlet implementation class FrontController
@@ -18,6 +19,7 @@ import controller.ApplicationController;
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
     private ApplicationController applicationController;
+    private ViewResolver viewResolver;
     /**
      * @see HttpServlet#HttpServlet()
      */
@@ -34,9 +36,8 @@ public class FrontController extends HttpServlet {
 		System.out.println("path info: " + request.getPathInfo());
 		
 		String errorMessage="";
-		String page = applicationController.processRequest(request.getPathInfo(), request);
-		System.out.println(page);
-		request.getRequestDispatcher(page).forward(request, response); 
+		ProcessRequest(request, response);
+		
 	}
 
 	/**
@@ -47,14 +48,23 @@ public class FrontController extends HttpServlet {
 		System.out.println("path info: " + request.getPathInfo());
 		
 		String errorMessage="";
-		String page = applicationController.processRequest(request.getPathInfo(), request);
-		System.out.println(page);
+		
+		
+	}
+	
+	private void ProcessRequest(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String view = applicationController.processRequest(request.getPathInfo(), request);
+		String page = viewResolver.getPage(view);
 		request.getRequestDispatcher(page).forward(request, response); 
 	}
+	
 	@Override
 	public void init() throws ServletException {
 		super.init();
 		applicationController = new ApplicationController();
+		System.out.println("Application controller created");
+		viewResolver = new ViewResolver();
+		System.out.println("View resolver created");
 	}
 
 }

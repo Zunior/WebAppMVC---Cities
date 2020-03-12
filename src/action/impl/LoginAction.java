@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
 import action.AbstractAction;
+import constants.ViewConstants;
 import domain.User;
 
 public class LoginAction extends AbstractAction{
@@ -19,7 +20,7 @@ public class LoginAction extends AbstractAction{
 			users = new ArrayList<User>();
 		}
 		
-		String page = "../Login.jsp";
+		String page = ViewConstants.LOGIN;
 		String errorMessage = "Podaci nisu ispravni!";
 		
 		boolean ispavno = false;
@@ -28,7 +29,7 @@ public class LoginAction extends AbstractAction{
 		for (User user : users) {
 			if(user.getName().equalsIgnoreCase(username) && user.getPassword().equals(password)) {
 				HttpSession session = request.getSession(true);
-				page = "/WEB-INF/pages/Home.jsp";
+				page = ViewConstants.HOME;
 				session.setAttribute("currentUser", user);
 				ispavno = true;
 				break;
@@ -38,8 +39,6 @@ public class LoginAction extends AbstractAction{
 		}
 		if (ispavno)	
 			request.setAttribute("errorMessage", errorMessage);
-		
-	
 	
 		return page;
 	}

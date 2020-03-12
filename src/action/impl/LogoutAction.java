@@ -3,6 +3,7 @@ package action.impl;
 import javax.servlet.http.HttpServletRequest;
 
 import action.AbstractAction;
+import constants.ViewConstants;
 
 public class LogoutAction extends AbstractAction{
 
@@ -10,7 +11,7 @@ public class LogoutAction extends AbstractAction{
 	public String execute(HttpServletRequest request) {
 		request.getSession().invalidate();
 		
-		return "../Login.jsp";
+		return ViewConstants.LOGOUT;
 	}
 
 }

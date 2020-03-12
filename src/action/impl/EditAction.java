@@ -6,6 +6,7 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import action.AbstractAction;
+import constants.ViewConstants;
 import domain.City;
 
 public class EditAction extends AbstractAction{
@@ -22,7 +23,7 @@ public class EditAction extends AbstractAction{
 		cities.add(new City(brojGrada, imeGrada));
 //		request.getServletContext().setAttribute("cities", cities);
 		
-		return "../WEB-INF/pages/Edit.jsp";
+		return ViewConstants.EDIT_CITY;
 	}
 
 }

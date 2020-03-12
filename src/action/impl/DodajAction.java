@@ -3,6 +3,7 @@ package action.impl;
 import javax.servlet.http.HttpServletRequest;
 
 import action.AbstractAction;
+import constants.ViewConstants;
 
 public class DodajAction extends AbstractAction{
 
@@ -10,7 +11,7 @@ public class DodajAction extends AbstractAction{
 	public String execute(HttpServletRequest request) {
 		
 //		return "/WEB-INF/DodajNoviGrad.jsp";
-		return "addCity";
+		return ViewConstants.ADD_CITY;
 	}
 	
 }
